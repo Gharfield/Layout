@@ -1,0 +1,133 @@
+//
+//  RECEPTLAYOUT.swift
+//  MyProject
+//
+//
+import SwiftUI
+
+struct RECEPTLAYOUT: View {
+    var body: some View {
+		ScrollView(showsIndicators: false) {
+			VStack {
+				Text("Utforska receptboken!".uppercased())
+					.font(.system(.largeTitle, design: .monospaced, weight: .black))
+					.frame(maxWidth: .infinity, alignment: .top)
+					.clipped()
+					.padding(.leading)
+					.padding(.bottom, 8)
+				ForEach(0..<5) { _ in // Replace with your data model here
+					// Chapter VStack
+					VStack(alignment: .leading) {
+						Text("Hjälp")
+							.padding(.leading)
+							.font(.system(.title3, weight: .bold))
+						ScrollView(.horizontal, showsIndicators: false) {
+							HStack {
+								ForEach(0..<5) { _ in // Replace with your data model here
+									VStack(alignment: .leading) {
+										Image("myImage")
+											.renderingMode(.original)
+											.resizable()
+											.aspectRatio(contentMode: .fit)
+										Image("myImage")
+											.renderingMode(.original)
+											.resizable()
+											.aspectRatio(contentMode: .fill)
+											.frame(width: 250, height: 141)
+											.clipped()
+											.mask { RoundedRectangle(cornerRadius: 10, style: .continuous) }
+											.shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 3)
+										Text("Episode Title")
+											.font(.system(.headline, weight: .medium))
+										Text("Subtitle")
+											.font(.system(.footnote, weight: .medium))
+											.foregroundColor(.secondary)
+									}
+									.frame(width: 250)
+									.clipped()
+								}
+							}
+							.padding(.horizontal)
+						}
+						// Poster
+						ZStack {
+							Image("myImage")
+								.renderingMode(.original)
+								.resizable()
+								.aspectRatio(contentMode: .fill)
+								.frame(width: 392, height: 450)
+								.clipped()
+							VStack(spacing: 7) {
+								Text("SOMMARSALLADER".uppercased())
+									.font(.system(.title, weight: .semibold))
+									.padding(.bottom)
+									.foregroundColor(.white)
+								Text("På grillen alltså.")
+									.font(.system(.title, weight: .semibold))
+								Text("FRAM MED GRILLEN!")
+									.padding()
+									.padding(.horizontal)
+									.background(Color(.tertiaryLabel))
+									.foregroundColor(.black)
+									.mask { RoundedRectangle(cornerRadius: 40, style: .continuous) }
+									.font(.system(.subheadline, weight: .semibold))
+									.padding(.top)
+							}
+							.foregroundColor(.white)
+						}
+						.padding(.top, 16)
+					}
+					.padding(.vertical)
+				}
+			}
+			.frame(maxWidth: .infinity)
+			.clipped()
+			.padding(.top, 98)
+			.padding(.bottom, 150)
+		}
+		.overlay(alignment: .top) {
+			// Status Bar
+			HStack {
+				Text("9:41")
+					.frame(width: 109)
+					.clipped()
+					.font(.system(.body, weight: .semibold))
+				Spacer()
+				HStack(spacing: 5) {
+					Image(systemName: "cellularbars")
+						.imageScale(.small)
+					Image(systemName: "wifi")
+						.imageScale(.small)
+					Image(systemName: "battery.100")
+						.symbolRenderingMode(.hierarchical)
+						.font(.system(.body, weight: .light))
+				}
+				.frame(width: 109)
+				.clipped()
+				.font(.system(.body, weight: .semibold))
+			}
+			.padding(.horizontal)
+			.padding(.top, 5)
+			.frame(maxWidth: .infinity)
+			.clipped()
+			.frame(height: 53)
+			.clipped()
+			.background(Color(.displayP3, red: 135/255, green: 119/255, blue: 94/255))
+		}
+		.overlay(alignment: .bottom) {
+			Group {
+				
+			}
+		}
+		.background {
+			RoundedRectangle(cornerRadius: 4, style: .circular)
+				.fill(Color(.displayP3, red: 135/255, green: 119/255, blue: 94/255))
+		}
+    }
+}
+
+struct RECEPTLAYOUT_Previews: PreviewProvider {
+    static var previews: some View {
+        RECEPTLAYOUT()
+    }
+}
